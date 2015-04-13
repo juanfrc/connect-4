@@ -16,6 +16,12 @@
 	border-radius: 50px;
 }
 
+.circle-red {
+	background: #990000;
+}
+.circle-black {
+	background: black;
+}
 .circle:hover {
 	background: #F5F5DC;
 }
