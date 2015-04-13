@@ -13,8 +13,7 @@ Good news: you know JavaScript! Or at least you think you do. For this challenge
 
 ### Release 1: Deciding on your project and MVP
 
-You have a choice of two possible projects to work on: building a JavaScript version of Connect Four, or building a survey website (with lots of AJAX). Here are some possible user stories
-for both:
+You have a choice of two possible projects to work on: building a JavaScript version of Connect Four
 
 **Connect Four**
 > * A user can see a board
