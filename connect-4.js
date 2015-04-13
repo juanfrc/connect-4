@@ -33,10 +33,12 @@ $(document).ready(function() {
 	var game = function(column){
 		console.log(column);
 		for(i=0; i < column.length; i++) {
-			if($("#" + column[i]).hasClass("circle-red") == false) {
+			if(($("#" + column[i]).hasClass("circle-red") || $("#" + column[i]).hasClass("circle-black")) == false){
 				$("#" + column[i]).addClass("circle-red");
+				$(Math.floor((Math.random() * 7) + 1));
 				break;
 			}
 		}
+
 	}
 });
