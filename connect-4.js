@@ -25,79 +25,96 @@ var diagonals = [diagonal6, diagonal5, diagonal4, diagonal3, diagonal2, diagonal
 
 
 $(document).ready(function() {
-	won = 0;
-	$(".col-1").on("click", function(){ 
-		if(won == 0) {
-			game(column1);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
-	$(".col-2").on("click", function(){ 
-		if(won == 0) {
-			game(column2);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
-	$(".col-3").on("click", function(){ 
-		if(won == 0) {
-			game(column3);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
-	$(".col-4").on("click", function(){ 
-		if(won == 0) {
-			game(column4);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
-	$(".col-5").on("click", function(){ 
-		if(won == 0) {
-			game(column5);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
-	$(".col-6").on("click", function(){ 
-		if(won == 0) {
-			game(column6);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
-	$(".col-7").on("click", function(){ 
-		if(won == 0) {
-			game(column7);
-			winner('circle-red');
-			}
-		if(won == 0){
-			game_black();
-			winner('circle-black');
-		} 
-	});
+	var juego = 0
+	$('#start').on("click", function() {
+		juego ++;
+		if(juego == 1) {
+			game();
+		}
+		removeClass();
+	})
 
-	var game = function(column){
+	var removeClass = function(){
+		$(".board td").removeClass("circle-red");
+		$(".board td").removeClass("circle-black");
+		$('.board').removeClass('winner')
+	}
+
+	var game = function() {
+		won = 0;
+		$(".col-1").on("click", function(){ 
+			if(won == 0) {
+				game_red(column1);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+		$(".col-2").on("click", function(){ 
+			if(won == 0) {
+				game_red(column2);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+		$(".col-3").on("click", function(){ 
+			if(won == 0) {
+				game_red(column3);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+		$(".col-4").on("click", function(){ 
+			if(won == 0) {
+				game_red(column4);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+		$(".col-5").on("click", function(){ 
+			if(won == 0) {
+				game_red(column5);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+		$(".col-6").on("click", function(){ 
+			if(won == 0) {
+				game_red(column6);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+		$(".col-7").on("click", function(){ 
+			if(won == 0) {
+				game_red(column7);
+				winner('circle-red');
+				}
+			if(won == 0){
+				game_black();
+				winner('circle-black');
+			} 
+		});
+	}
+
+	var game_red = function(column){
 		console.log(column);
 		for(i=0; i < column.length; i++) {
 			if(($("#" + column[i]).hasClass("circle-red") || $("#" + column[i]).hasClass("circle-black")) == false){
@@ -106,12 +123,14 @@ $(document).ready(function() {
 			}
 		}
 	}		
-	
+
 	var game_black = function() {	
 		var columnBlack = columns[Math.floor((Math.random() * 7))];
 		for(i=0; i < columnBlack.length; i++) {
 			if(($("#" + columnBlack[i]).hasClass("circle-red") || $("#" + columnBlack[i]).hasClass("circle-black")) == false){
-				$("#" + columnBlack[i]).addClass("circle-black");							
+				$("#" + columnBlack[i]).delay(1000).queue(function(next) {
+					$(this).addClass("circle-black");
+				})							
 				break;
 			}
 		}
@@ -131,8 +150,10 @@ $(document).ready(function() {
 					counter ++;
 					if(counter == 4) {
 						if(playerClass == "circle-red"){
+							$('.board').addClass('winner')
 							alert("Red won")
 						} else {
+							$('.board').addClass('winner')
 							alert("Black won")
 						}
 						won = 1;
@@ -152,8 +173,10 @@ $(document).ready(function() {
 					counter ++;
 					if(counter == 4) {
 						if(playerClass == "circle-red"){
+							$('.board').addClass('winner')
 							alert("Red won");
 						} else {
+							$('.board').addClass('winner')
 							alert("Black won");
 						}
 						won = 1;
@@ -173,8 +196,10 @@ $(document).ready(function() {
 					counter ++;
 					if(counter == 4) {
 						if(playerClass == "circle-red"){
+							$('.board').addClass('winner')
 							alert("Red won");
 						} else {
+							$('.board').addClass('winner')
 							alert("Black won");
 						}
 						won = 1;

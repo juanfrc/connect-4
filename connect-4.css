@@ -44,5 +44,8 @@ button {
 	width: 100px;
 	border-radius: 10px;
 	background: #cd3a3e;
-
+	font-size: 25px;
+}
+.winner {
+	background: green;
 }
