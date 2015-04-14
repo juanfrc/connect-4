@@ -49,3 +49,12 @@ button {
 .winner {
 	background: green;
 }
+
+.circle-turn {
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+	position: relative;
+	left: 150px;
+	top: 200px;
+}

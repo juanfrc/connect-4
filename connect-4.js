@@ -28,6 +28,9 @@ $(document).ready(function() {
 	var juego = 0
 	$('#start').on("click", function() {
 		juego ++;
+		circleSwitcher("","circle-red");
+		circleSwitcher("","circle-black");
+		console.log("Estoy acá");
 		if(juego == 1) {
 			game();
 		}
@@ -119,8 +122,11 @@ $(document).ready(function() {
 		for(i=0; i < column.length; i++) {
 			if(($("#" + column[i]).hasClass("circle-red") || $("#" + column[i]).hasClass("circle-black")) == false){
 				$("#" + column[i]).addClass("circle-red");
+				$('.circle-turn').removeClass("circle-red");
+				$('.circle-turn').addClass("circle-black");
 				break;
 			}
+			// circleSwitcher("circle-black","circle-red");
 		}
 	}		
 
@@ -130,9 +136,12 @@ $(document).ready(function() {
 			if(($("#" + columnBlack[i]).hasClass("circle-red") || $("#" + columnBlack[i]).hasClass("circle-black")) == false){
 				$("#" + columnBlack[i]).delay(1000).queue(function(next) {
 					$(this).addClass("circle-black");
+					$('.circle-turn').removeClass("circle-black");
+					$('.circle-turn').addClass("circle-red");
 				})							
 				break;
 			}
+			// circleSwitcher("circle-red","circle-black");
 		}
 	}
 
@@ -209,6 +218,12 @@ $(document).ready(function() {
 				}
 			}
 		}
+	}
+
+	var circleSwitcher = function(addClass, removeClass) {
+		console.log("I'm switching circles");
+		$('.circle-turn').removeClass(removeClass);
+		$('.circle-turn').addClass(addClass);
 	}
 
 });
