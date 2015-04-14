@@ -7,35 +7,94 @@ var column6 = ["6","13","20","27","34", "41"];
 var column7 = ["7","14","21","28","35", "42"];
 var columns = [column1, column2, column3, column4, column5, column6, column7];
 
+var row1 = ["1","2", "3", "4", "5", "6", "7"];
+var row2 = ["8","9", "10", "11", "12", "13", "14"];
+var row3 = ["15","16", "17", "18", "19", "20", "21"];
+var row4 = ["22","23", "24", "25", "26", "27", "28"];
+var row5 = ["29","30", "31", "32", "33", "34", "35"];
+var row6 = ["36","37", "38", "39", "40", "41", "42"];
+var rows = [row1, row2, row3, row4, row5, row6];
+
+var diagonal1 = ["4", "12", "20", "28"];
+var diagonal2 = ["3", "11", "19", "27", "35"];
+var diagonal3 = ["2", "10", "18", "26", "34", "42"];
+var diagonal4 = ["1", "9", "17", "25", "33", "41"];
+var diagonal5 = ["8", "16", "24", "32", "40"];
+var diagonal6 = ["15", "23", "31", "39"];
+var diagonals = [diagonal6, diagonal5, diagonal4, diagonal3, diagonal2, diagonal1];
+
 
 $(document).ready(function() {
+	won = 0;
 	$(".col-1").on("click", function(){ 
-		game(column1);
-		game_black()
+		if(won == 0) {
+			game(column1);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 	$(".col-2").on("click", function(){ 
-		game(column2);
-		game_black();
+		if(won == 0) {
+			game(column2);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 	$(".col-3").on("click", function(){ 
-		game(column3);
-		game_black();
+		if(won == 0) {
+			game(column3);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 	$(".col-4").on("click", function(){ 
-		game(column4);
-		game_black();
+		if(won == 0) {
+			game(column4);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 	$(".col-5").on("click", function(){ 
-		game(column5);
-		game_black();
+		if(won == 0) {
+			game(column5);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 	$(".col-6").on("click", function(){ 
-		game(column6);
-		game_black();
+		if(won == 0) {
+			game(column6);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 	$(".col-7").on("click", function(){ 
-		game(column7);
-		game_black();
+		if(won == 0) {
+			game(column7);
+			winner('circle-red');
+			}
+		if(won == 0){
+			game_black();
+			winner('circle-black');
+		} 
 	});
 
 	var game = function(column){
@@ -54,6 +113,75 @@ $(document).ready(function() {
 			if(($("#" + columnBlack[i]).hasClass("circle-red") || $("#" + columnBlack[i]).hasClass("circle-black")) == false){
 				$("#" + columnBlack[i]).addClass("circle-black");							
 				break;
+			}
+		}
+	}
+
+	var winner = function(playerClass) {
+		columWinner(playerClass);
+		rowWinner(playerClass);
+		diagonalWinner(playerClass)
+	}
+
+	var columWinner = function(playerClass){
+		for( i = 0; i < columns.length; i++){
+			counter = 0;
+			for(j = 0; j < columns[i].length; j ++){
+				if($("#"+columns[i][j]).hasClass(playerClass)){
+					counter ++;
+					if(counter == 4) {
+						if(playerClass == "circle-red"){
+							alert("Red won")
+						} else {
+							alert("Black won")
+						}
+						won = 1;
+					}
+				} else {
+						counter = 0;
+					} 
+			}
+		}
+	}
+
+	var rowWinner = function(playerClass){
+		for( i = 0; i < rows.length; i++){
+			counter = 0;
+			for(j = 0; j < rows[i].length; j ++){
+				if($("#"+rows[i][j]).hasClass(playerClass)){
+					counter ++;
+					if(counter == 4) {
+						if(playerClass == "circle-red"){
+							alert("Red won");
+						} else {
+							alert("Black won");
+						}
+						won = 1;
+					}
+				} else {
+					counter = 0;
+				}
+			}
+		}
+	}
+
+	var diagonalWinner = function(playerClass){
+		for( i = 0; i < diagonals.length; i++){
+			counter = 0;
+			for(j = 0; j < diagonals[i].length; j ++){
+				if($("#"+diagonals[i][j]).hasClass(playerClass)){
+					counter ++;
+					if(counter == 4) {
+						if(playerClass == "circle-red"){
+							alert("Red won");
+						} else {
+							alert("Black won");
+						}
+						won = 1;
+					}
+				} else {
+					counter = 0;
+				}
 			}
 		}
 	}
