@@ -21,15 +21,21 @@ var diagonal3 = ["2", "10", "18", "26", "34", "42"];
 var diagonal4 = ["1", "9", "17", "25", "33", "41"];
 var diagonal5 = ["8", "16", "24", "32", "40"];
 var diagonal6 = ["15", "23", "31", "39"];
-var diagonals = [diagonal6, diagonal5, diagonal4, diagonal3, diagonal2, diagonal1];
+var diagonal7 = ["21", "27", "33", "39"]
+var diagonal8 = ["14", "20", "26", "32", "38",]
+var diagonal9 = ["7", "13", "19", "25", "31", "37"]
+var diagonal10 = ["6", "12", "18", "24", "30", "36"]
+var diagonal11 = ["5", "11", "17", "23", "29"]
+var diagonal12 = ["4", "10", "16", "22"]
+var diagonals = [diagonal12, diagonal11, diagonal10, diagonal9, diagonal8, diagonal7, diagonal6, diagonal5, diagonal4, diagonal3, diagonal2, diagonal1];
 
 
 $(document).ready(function() {
 	var juego = 0
 	$('#start').on("click", function() {
 		juego ++;
-		circleSwitcher("","circle-red");
-		circleSwitcher("","circle-black");
+		// circleSwitcher("","circle-red");
+		circleSwitcher("circle-red","circle-black");
 		console.log("Estoy acá");
 		if(juego == 1) {
 			game();
@@ -122,8 +128,11 @@ $(document).ready(function() {
 		for(i=0; i < column.length; i++) {
 			if(($("#" + column[i]).hasClass("circle-red") || $("#" + column[i]).hasClass("circle-black")) == false){
 				$("#" + column[i]).addClass("circle-red");
-				$('.circle-turn').removeClass("circle-red");
-				$('.circle-turn').addClass("circle-black");
+				$(".circle-turn").toggle("slide", {direction: "left"}, 200).promise().done(function() {
+					$('.circle-turn').removeClass("circle-red").addClass("circle-black");
+					$('.circle-turn').toggle("slide", 200)
+				});
+
 				break;
 			}
 			// circleSwitcher("circle-black","circle-red");
@@ -134,10 +143,12 @@ $(document).ready(function() {
 		var columnBlack = columns[Math.floor((Math.random() * 7))];
 		for(i=0; i < columnBlack.length; i++) {
 			if(($("#" + columnBlack[i]).hasClass("circle-red") || $("#" + columnBlack[i]).hasClass("circle-black")) == false){
-				$("#" + columnBlack[i]).delay(1000).queue(function(next) {
+				$("#" + columnBlack[i]).delay(500).queue(function(next) {
 					$(this).addClass("circle-black");
-					$('.circle-turn').removeClass("circle-black");
-					$('.circle-turn').addClass("circle-red");
+					$(".circle-turn").toggle("slide", 200).promise().done(function(){
+						$('.circle-turn').removeClass("circle-black").addClass("circle-red");
+						$('.circle-turn').toggle("slide", 200)
+					});
 				})							
 				break;
 			}
