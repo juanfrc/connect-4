@@ -58,3 +58,11 @@ button {
 	left: 150px;
 	top: 200px;
 }
+
+.white {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	background: white;
+	display: inline-block;
+}

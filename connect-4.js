@@ -127,7 +127,7 @@ $(document).ready(function() {
 		console.log(column);
 		for(i=0; i < column.length; i++) {
 			if(($("#" + column[i]).hasClass("circle-red") || $("#" + column[i]).hasClass("circle-black")) == false){
-				$("#" + column[i]).addClass("circle-red");
+				$("#" + column[i]).addClass("animated bounceInDown circle-red");
 				$(".circle-turn").toggle("slide", {direction: "left"}, 200).promise().done(function() {
 					$('.circle-turn').removeClass("circle-red").addClass("circle-black");
 					$('.circle-turn').toggle("slide", 200)
@@ -144,7 +144,7 @@ $(document).ready(function() {
 		for(i=0; i < columnBlack.length; i++) {
 			if(($("#" + columnBlack[i]).hasClass("circle-red") || $("#" + columnBlack[i]).hasClass("circle-black")) == false){
 				$("#" + columnBlack[i]).delay(500).queue(function(next) {
-					$(this).addClass("circle-black");
+					$(this).addClass("circle-black animated bounceInDown");
 					$(".circle-turn").toggle("slide", 200).promise().done(function(){
 						$('.circle-turn').removeClass("circle-black").addClass("circle-red");
 						$('.circle-turn').toggle("slide", 200)
@@ -238,3 +238,34 @@ $(document).ready(function() {
 	}
 
 });
+
+
+//   $(function() {
+//     var $dropDiv = $('#dropDiv');
+//     var mythis = $('#holder a');
+//     // get position of the element we clicked on
+//     var offset = mythis.offset();
+    
+//     // get width/height of click element
+//     var h = mythis.outerHeight();
+//     var w = mythis.outerWidth();
+    
+//     // get width/height of drop element
+//     var dh = $dropDiv.outerHeight();
+//     var dw = $dropDiv.outerWidth();
+    
+//     // determine middle position
+//     var initLeft = offset.left + ((w/2) - (dw/2));
+
+//     // animate drop
+//     $dropDiv.css({
+//             left: initLeft,
+//             top: $(window).scrollTop() - dh,
+//             opacity: 0,
+//             display: 'block'
+//         }).animate({
+//             left: initLeft,
+//             top: offset.top - dh,
+//             opacity: 1
+//         }, 300, 'easeOutBounce');
+// });
